@@ -1,0 +1,4 @@
+- [ ] Add the missing single settings row with the supplied project defaults.
+- [ ] Finish username/password login, server-side lockout feedback, and the 30-minute idle sign-out.
+- [ ] Add the one-time environment-password admin bootstrap script.
+- [ ] Verify the login screen, lockout UI, tests, and current build diagnostics.
