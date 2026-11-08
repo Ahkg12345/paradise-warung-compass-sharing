@@ -1,35 +1,29 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
+# AGENTS.md
 
-## What Lovable manages
+Guidance for AI coding assistants and contributors working on this repository.
 
-Rules outside this block are the project's own. Change the pieces below in
-Lovable, not by hand. With the [Lovable MCP](https://mcp.lovable.dev)
-connected, `send_message` asks Lovable to do it; otherwise ask the user to
-use the editor.
+## Project
 
-- **Database.** Do not add or edit `supabase/migrations/` or `drizzle/`.
-  Ask Lovable to change the schema.
-- **Generated files.** Do not edit a file whose header says it is automatically
-  generated.
-- **AI gateway.** Keep model calls on Lovable's gateway, and keep
-  `LOVABLE_API_KEY` out of browser code.
-- **Connectors.** Lovable provides native connectors. `list_connectors` shows
-  which are enabled; `add_connector` only returns the dashboard link. When a
-  connector is enabled, calls go through the connector gateway and need
-  `LOVABLE_API_KEY`. When Lovable does not provide one, users can bring their
-  own key and store it in Secrets.
-- **Secrets.** Lovable manages them. Do not put secret values in the repo.
-<!-- LOVABLE:END -->
+Kedai Paradise is a web-based cashier and financial management system for the Kedai Paradise Foundation.
 
 ## Application Architecture
 
-- Keep the app on the existing TanStack Start and Tailwind v4 stack; use file-based routes, semantic CSS variables, and shared role-aware layout modules so the restaurant UI stays aligned with the supported runtime.
-- Keep username credential verification and login-attempt updates in authenticated server-runtime code, and provision initial administrators with a standalone environment-configured script so privileged credentials never enter the browser bundle.
+- Keep the app on the existing TanStack Start and Tailwind v4 stack. Use file-based routes, semantic CSS variables, and shared role-aware layout modules so the restaurant UI stays aligned with the supported runtime.
+- Keep username credential verification and login-attempt updates in authenticated server-runtime code. Provision initial administrators with a standalone, environment-configured script so privileged credentials never enter the browser bundle.
+
+## Security
+
+- Never commit secrets. This includes `.env` files, API keys, database passwords, service role keys and tokens. Use `.env.example` with placeholder values to document required variables.
+- Never expose server-only keys in browser code.
+- Do not log or print credentials, password hashes or session tokens.
+
+## Database
+
+- Schema files live in `supabase/` and `drizzle/`. Do not change migrations without agreement from the project owner, since the schema must stay consistent with the live database.
+- Never edit files whose header says they are automatically generated.
+
+## Working conventions
+
+- Use `bun` as the package manager (the repo has a `bun.lock`). Check `package.json` for the available scripts.
+- Keep changes small and focused, and keep the main branch in a working state.
+- Do not rewrite published git history (no force pushes, rebases or squashes of pushed commits).
